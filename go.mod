@@ -1,3 +1,3 @@
-module github.com/dennix85/Go-Tdarr-Module
+module github.com/dennix85/go-tdarr-module
 
 go 1.21
