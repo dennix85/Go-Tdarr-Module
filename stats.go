@@ -105,7 +105,7 @@ func (c *Client) StatsGetWorkerVerdictHist(req StatsGetWorkerVerdictHistRequest)
 func (c *Client) StatsSpaceSavedAdd(req StatsSpaceSavedAddRequest) (string, error) {
 	resp, err := c.post(c.baseURL + "/api/v2/stats/space-saved-add", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }

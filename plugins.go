@@ -73,7 +73,7 @@ func (c *Client) CopyCommunityToLocal(req CopyCommunityToLocalRequest) (json.Raw
 func (c *Client) CreatePlugin(req CreatePluginRequest) (bool, error) {
 	resp, err := c.post(c.baseURL + "/api/v2/create-plugin", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 	return c.decodeBool(resp)
 }
@@ -136,7 +136,7 @@ func (c *Client) SearchPlugins(req SearchPluginsRequest) (json.RawMessage, error
 func (c *Client) UpdatePlugins(req UpdatePluginsRequest) (string, error) {
 	resp, err := c.post(c.baseURL + "/api/v2/update-plugins", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
