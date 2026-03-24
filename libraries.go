@@ -7,21 +7,21 @@ import (
 // AddAudioCodecExcludeRequest is the request body for this endpoint.
 type AddAudioCodecExcludeRequest struct {
 	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	Ele  string `json:"ele"`
 }
 
 // AddPluginIncludeRequest is the request body for this endpoint.
 type AddPluginIncludeRequest struct {
-	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	DbID   string `json:"dbID"`
+	Ele    string `json:"ele"`
 	Source string `json:"source"`
-	Index int `json:"index"`
+	Index  int    `json:"index"`
 }
 
 // AddVideoCodecExcludeRequest is the request body for this endpoint.
 type AddVideoCodecExcludeRequest struct {
 	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	Ele  string `json:"ele"`
 }
 
 // GetFilescannerStatusRequest is the request body for this endpoint.
@@ -42,7 +42,7 @@ type KillFileScannerRequest struct {
 // RemoveAudioCodecExcludeRequest is the request body for this endpoint.
 type RemoveAudioCodecExcludeRequest struct {
 	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	Ele  string `json:"ele"`
 }
 
 // RemoveLibraryFilesRequest is the request body for this endpoint.
@@ -54,13 +54,13 @@ type RemoveLibraryFilesRequest struct {
 // RemovePluginIncludeRequest is the request body for this endpoint.
 type RemovePluginIncludeRequest struct {
 	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	Ele  string `json:"ele"`
 }
 
 // RemoveVideoCodecExcludeRequest is the request body for this endpoint.
 type RemoveVideoCodecExcludeRequest struct {
 	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
+	Ele  string `json:"ele"`
 }
 
 // ScanFilesRequest is the request body for this endpoint.
@@ -82,38 +82,38 @@ type ToggleFolderWatchRequest struct {
 
 // ToggleScheduleRequest is the request body for this endpoint.
 type ToggleScheduleRequest struct {
-	DbID string `json:"dbID"`
-	Start int `json:"start"`
-	End int `json:"end"`
-	Type string `json:"type"`
+	DbID  string `json:"dbID"`
+	Start int    `json:"start"`
+	End   int    `json:"end"`
+	Type  string `json:"type"`
 }
 
 // UpdateAudioCodecExcludeRequest is the request body for this endpoint.
 type UpdateAudioCodecExcludeRequest struct {
-	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
-	Status bool `json:"status"`
+	DbID   string `json:"dbID"`
+	Ele    string `json:"ele"`
+	Status bool   `json:"status"`
 }
 
 // UpdatePluginIncludeRequest is the request body for this endpoint.
 type UpdatePluginIncludeRequest struct {
-	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
-	Status bool `json:"status"`
+	DbID   string `json:"dbID"`
+	Ele    string `json:"ele"`
+	Status bool   `json:"status"`
 }
 
 // UpdateScheduleBlockRequest is the request body for this endpoint.
 type UpdateScheduleBlockRequest struct {
-	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
-	Status bool `json:"status"`
+	DbID   string `json:"dbID"`
+	Ele    string `json:"ele"`
+	Status bool   `json:"status"`
 }
 
 // UpdateVideoCodecExcludeRequest is the request body for this endpoint.
 type UpdateVideoCodecExcludeRequest struct {
-	DbID string `json:"dbID"`
-	Ele string `json:"ele"`
-	Status bool `json:"status"`
+	DbID   string `json:"dbID"`
+	Ele    string `json:"ele"`
+	Status bool   `json:"status"`
 }
 
 // VerifyFolderExistsRequest is the request body for this endpoint.
@@ -123,181 +123,179 @@ type VerifyFolderExistsRequest struct {
 
 // VerifyPluginRequest is the request body for this endpoint.
 type VerifyPluginRequest struct {
-	PluginID string `json:"pluginID"`
-	Community bool `json:"community"`
+	PluginID  string `json:"pluginID"`
+	Community bool   `json:"community"`
 }
 
-// AddAudioCodecExclude - For adding an audio codec to be excluded/included in basic audio transcoding settings
+// AddAudioCodecExclude - For adding an audio codec to be excluded/included in basic audio transcoding settings.
 func (c *Client) AddAudioCodecExclude(req AddAudioCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/add-audio-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/add-audio-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// AddPluginInclude - For adding a plugin to a classic plugin stack
+// AddPluginInclude - For adding a plugin to a classic plugin stack.
 func (c *Client) AddPluginInclude(req AddPluginIncludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/add-plugin-include", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/add-plugin-include", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// AddVideoCodecExclude - For adding an video codec to be excluded/included in basic video transcoding settings
+// AddVideoCodecExclude - For adding a video codec to be excluded/included in basic video transcoding settings.
 func (c *Client) AddVideoCodecExclude(req AddVideoCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/add-video-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/add-video-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// GetFilescannerStatus - For getting the status of a file scanner in progress
+// GetFilescannerStatus - For getting the status of a file scanner in progress.
 func (c *Client) GetFilescannerStatus(req GetFilescannerStatusRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/get-filescanner-status", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/get-filescanner-status", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// GetSubdirectories - For getting subdirectories of a folder
+// GetSubdirectories - For getting subdirectories of a folder.
 func (c *Client) GetSubdirectories(req GetSubdirectoriesRequest) (json.RawMessage, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/get-subdirectories", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/get-subdirectories", map[string]interface{}{"data": req})
 	if err != nil {
 		return nil, err
 	}
 	return c.decode(resp)
 }
 
-// KillFileScanner - For killing a file scanner in progress
+// KillFileScanner - For killing a file scanner in progress.
 func (c *Client) KillFileScanner(req KillFileScannerRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/kill-file-scanner", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/kill-file-scanner", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// RemoveAudioCodecExclude - For removing an audio codec to be excluded/included in basic audio transcoding settings
+// RemoveAudioCodecExclude - For removing an audio codec from basic audio transcoding settings.
 func (c *Client) RemoveAudioCodecExclude(req RemoveAudioCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/remove-audio-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/remove-audio-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// RemoveLibraryFiles - For removing all files from a Tdarr library DB, files on disk aren't removed
+// RemoveLibraryFiles - For removing all files from a Tdarr library DB; files on disk are not removed.
 func (c *Client) RemoveLibraryFiles(req RemoveLibraryFilesRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/remove-library-files", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/remove-library-files", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// RemovePluginInclude - For removing a plugin from a classic plugin stack
+// RemovePluginInclude - For removing a plugin from a classic plugin stack.
 func (c *Client) RemovePluginInclude(req RemovePluginIncludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/remove-plugin-include", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/remove-plugin-include", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// RemoveVideoCodecExclude - For removing an video codec to be excluded/included in basic video transcoding settings
+// RemoveVideoCodecExclude - For removing a video codec from basic video transcoding settings.
 func (c *Client) RemoveVideoCodecExclude(req RemoveVideoCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/remove-video-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/remove-video-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// ScanFiles - 
-  For running a scanFresh, scanFindNew or scanFolderWatcher on a library
-  scanFresh & scanFindNew require a single string directory path
-  scanFolderWatcher requires an array of file paths to scanned
-  
+// ScanFiles - For running a scanFresh, scanFindNew or scanFolderWatcher on a library.
+// scanFresh and scanFindNew require a single string directory path.
+// scanFolderWatcher requires an array of file paths to be scanned.
 func (c *Client) ScanFiles(req ScanFilesRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/scan-files", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/scan-files", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// ToggleFolderWatch - For enabling/disabling folder watching on a library
+// ToggleFolderWatch - For enabling/disabling folder watching on a library.
 func (c *Client) ToggleFolderWatch(req ToggleFolderWatchRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/toggle-folder-watch", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/toggle-folder-watch", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// ToggleSchedule - For updating the schedule of a library
+// ToggleSchedule - For updating the schedule of a library.
 func (c *Client) ToggleSchedule(req ToggleScheduleRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/toggle-schedule", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/toggle-schedule", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// UpdateAudioCodecExclude - For updating an audio codec to be excluded/included in basic audio transcoding settings
+// UpdateAudioCodecExclude - For updating an audio codec in basic audio transcoding settings.
 func (c *Client) UpdateAudioCodecExclude(req UpdateAudioCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/update-audio-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/update-audio-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// UpdatePluginInclude - For enabling/disabling a plugin in a classic plugin stack
+// UpdatePluginInclude - For enabling/disabling a plugin in a classic plugin stack.
 func (c *Client) UpdatePluginInclude(req UpdatePluginIncludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/update-plugin-include", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/update-plugin-include", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// UpdateScheduleBlock - For updating a block in a library schedule
+// UpdateScheduleBlock - For updating a block in a library schedule.
 func (c *Client) UpdateScheduleBlock(req UpdateScheduleBlockRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/update-schedule-block", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/update-schedule-block", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// UpdateVideoCodecExclude - For updating an video codec to be excluded/included in basic video transcoding settings
+// UpdateVideoCodecExclude - For updating a video codec in basic video transcoding settings.
 func (c *Client) UpdateVideoCodecExclude(req UpdateVideoCodecExcludeRequest) (string, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/update-video-codec-exclude", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/update-video-codec-exclude", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	return c.decodeString(resp)
 }
 
-// VerifyFolderExists - For verifying if a folder exists
+// VerifyFolderExists - For verifying if a folder exists.
 func (c *Client) VerifyFolderExists(req VerifyFolderExistsRequest) (bool, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/verify-folder-exists", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/verify-folder-exists", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 	return c.decodeBool(resp)
 }
 
-// VerifyPlugin - For verifying if a classic plugin exists
+// VerifyPlugin - For verifying if a classic plugin exists.
 func (c *Client) VerifyPlugin(req VerifyPluginRequest) (bool, error) {
-	resp, err := c.post(c.baseURL + "/api/v2/verify-plugin", map[string]interface{}{"data": req})
+	resp, err := c.post(c.baseURL+"/api/v2/verify-plugin", map[string]interface{}{"data": req})
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 	return c.decodeBool(resp)
 }
